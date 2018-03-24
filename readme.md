@@ -1,4 +1,16 @@
-PENTING:
+Web App using Express.Js to generate sequence number for letters, memos and notes.
 
-1. database / mongoose / mongodb ke excel
+Please Install:
 
+Node Js Version 6,
+MongoDb Version 3.2,
+Google Chrome Version 64,
+Mozilla Firefox Version 43.
+
+* to make the user an admin please update from MongoDb Shell the Role field
+
+1St Project
+
+Best Regards
+
+Al Farisi Ibnu Majah
