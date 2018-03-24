@@ -11,6 +11,13 @@ Mozilla Firefox Version 43.
 
 * to make the user an "admin" please update from MongoDb Shell in the role field
 
+
+Before use the app, please change app.js:
+1. suffixMemo = "your suffix memo format"
+2. suffixNote = "your suffix note format"
+3. suffix = "your suffix letter format"
+3. year = new Date().getYear()+2 // this web app use prefix by year + 2, example 2017, then the prefix will be 19
+
 Before you use an upload facilitiy:
 1. please create "uploads" folder under "public" folder
 2. then create "letters", "memos", "notes", "noms", "inletters", "inmemos", innotes" folders
