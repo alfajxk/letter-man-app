@@ -1,0 +1,64 @@
+<script>
+    //DATA TABLES
+      $(document).ready(function() {
+        $('#tbid').DataTable({
+            "lengthMenu": [ 10, 25, 50, 75, 100 ],
+            "paging": true,
+            "ordering": true,
+			"order": [[0, "desc"]]
+
+        });
+
+      });
+    //FILTER DATATABLES
+    $(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#tbid tfoot th').insertAfter($('#tbid thead tr')).each( function () {
+        var style = $(this).css('width');   
+        var title = $(this).text();
+        if ($(this).is('[disabled=disabled]')) {
+            $(this).html( '<input type="text" disabled style="width:'+style+'";/>');
+            } else {
+            $(this).html( '<input type="text" style="width:'+style+'"; placeholder="Search '+title+'" />');
+        };
+    });
+    // DataTable
+    var table = $('#tbid').DataTable();
+    // Apply the search
+    table.columns().every( function () {
+        var that = this;
+        $( 'input', this.footer() ).on( 'keyup change', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        });
+      });
+    }); 
+    //Copy to Clipboard
+    $('.btn-copy').on('click', function(){
+      element = $(this).closest('tr').children('td:first')[0];
+      var selection = window.getSelection();        
+      var range = document.createRange();
+      range.selectNodeContents(element);
+      selection.removeAllRanges();
+      selection.addRange(range);
+        try {
+           var successful = document.execCommand('copy');
+          if(successful) {
+            $('.res').html("Coppied");
+          }
+           else
+           { $('.res').html("Unable to copy!");} 
+       } catch (err) {
+          $('.res').html(err);
+       }
+    });
+    // TOOLTIP
+    $(document).ready(function(){$('[data-toggle="tooltip"]').tooltip({
+      placement: 'top',
+      trigger: 'focus'
+        });
+    });
+</script>

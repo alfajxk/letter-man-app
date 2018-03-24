@@ -1,0 +1,357 @@
+<% include ../partials/header %>
+
+<div class="container list">
+  <div class="row justify-content-around"> 
+    <div class="col-10"> 
+      <div class="text-center">
+        <h1>Edit Number</h1>
+        <p>
+        <a class="btn btn-primary btn-lg btn-block" href="/innotes">List Incoming Notes</a>
+      </p>
+      </div>
+    </div> 
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row justify-content-around">
+  <div class=col-10>
+    <form action="/innotes/<%= innote._id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+
+      <div class="form-row">
+				<div class="form-group col-3">
+					<label>Number</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-telegram"></i></span>
+							<input class="form-control form-control-md upper" type="text" name="innote[ltrNmbr]" value="<%= innote.ltrNmbr %>" required>
+						</div>	
+					</div>
+				<div class="form-group col-3">
+					<label>Date (Tanggal Nota)</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							<input class="form-control form-control-md date" type="text" name="innote[date]" value="<%= innote.date %>" required>
+						</div>	
+					</div>
+				<div class="form-group col-3">
+					<label>Debtor (Nasabah)</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user"></i></span>
+							<input class="form-control form-control-md case" type="text" name="innote[debtor]" value="<%= innote.debtor %>" required>
+						</div>
+				</div>
+				<div class="form-group col-3">
+					<label>Proposer</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+							<input class="form-control form-control-md case" type="text" name="innote[proposer]" value="<%= innote.proposer %>" required>
+						</div>
+				</div>
+			</div>
+      <div class="form-inline mb-2 mt-2">
+        <label for="innote[segment]" class="mr-sm-2 mb-2">Select Segment Type: </label>
+          <select required name="innote[segment]" class="custom-select mb-2 mr-sm-5">
+            <% if (innote.segment == "BBG") { %>
+            <option name="innote[segment]" value="BBG" selected>BBG</option>
+            <option name="innote[segment]" value="CHG">CHG (Consumer)</option>
+            <option name="innote[segment]" value="MBG">MBG (Micro)</option>
+            <option name="innote[segment]" value="PWG">PWG</option>
+            <option name="innote[segment]" value="CMG">CMG (Wholesale)</option>
+            <% } else if (innote.segment == "CHG") { %>
+            <option name="innote[segment]" value="BBG">BBG</option>
+            <option name="innote[segment]" value="CHG" selected>CHG (Consumer)</option>
+            <option name="innote[segment]" value="MBG">MBG (Micro)</option>
+            <option name="innote[segment]" value="PWG">PWG</option>
+            <option name="innote[segment]" value="CMG">CMG (Wholesale)</option>
+            <% } else if (innote.segment == "MBG") { %>
+            <option name="innote[segment]" value="BBG">BBG</option>
+            <option name="innote[segment]" value="CHG">CHG (Consumer)</option>
+            <option name="innote[segment]" value="MBG" selected>MBG (Micro)</option>
+            <option name="innote[segment]" value="PWG">PWG</option>
+            <option name="innote[segment]" value="CMG">CMG (Wholesale)</option>
+            <% } else if (innote.segment == "PWG") { %>
+            <option name="innote[segment]" value="BBG">BBG</option>
+            <option name="innote[segment]" value="CHG">CHG (Consumer)</option>
+            <option name="innote[segment]" value="MBG">MBG (Micro)</option>
+            <option name="innote[segment]" value="PWG" selected>PWG</option>
+            <option name="innote[segment]" value="CMG">CMG (Wholesale)</option>
+            <% } else { %>
+            <option name="innote[segment]" value="BBG">BBG</option>
+            <option name="innote[segment]" value="CHG">CHG (Consumer)</option>
+            <option name="innote[segment]" value="MBG">MBG (Micro)</option>
+            <option name="innote[segment]" value="PWG">PWG</option>
+            <option name="innote[segment]" value="CMG" selected>CMG (Wholesale)</option>
+            <% } %>
+          </select>
+        <label for="innote[type]" class="mr-sm-2 mb-2">Select Financing Type: </label>
+          <select required name="innote[type]" class="custom-select mb-2 mr-sm-2">
+            <% if (innote.type == "New") { %>
+            <option name="innote[type]" value="New" selected>New</option>
+            <option name="innote[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="innote[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="innote[type]" value="Restructure">Restructure</option>
+            <option name="innote[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="innote[type]" value="Auction">Auction (Lelang)</option>
+            <option name="innote[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="innote[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="innote[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="innote[type]" value="Refinancing">Refinancing</option>
+            <% } else if (innote.type == "Prolongation") { %>
+            <option name="innote[type]" value="New">New</option>
+            <option name="innote[type]" value="Prolongation" selected>Prolongation (Perpanjangan)</option>
+            <option name="innote[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="innote[type]" value="Restructure">Restructure</option>
+            <option name="innote[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="innote[type]" value="Auction">Auction (Lelang)</option>
+            <option name="innote[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="innote[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="innote[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="innote[type]" value="Refinancing">Refinancing</option>
+            <% } else if (innote.type == "Increment") { %>
+            <option name="innote[type]" value="New">New</option>
+            <option name="innote[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="innote[type]" value="Increment" selected>Increment (Top Up/Penambahan)</option>
+            <option name="innote[type]" value="Restructure">Restructure</option>
+            <option name="innote[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="innote[type]" value="Auction">Auction (Lelang)</option>
+            <option name="innote[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="innote[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="innote[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="innote[type]" value="Refinancing">Refinancing</option>
+            <% } else if (innote.type == "Restructure") { %>
+            <option name="innote[type]" value="New">New</option>
+            <option name="innote[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="innote[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="innote[type]" value="Restructure" selected>Restructure</option>
+            <option name="innote[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="innote[type]" value="Auction">Auction (Lelang)</option>
+            <option name="innote[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="innote[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="innote[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="innote[type]" value="Refinancing">Refinancing</option>
+            <% } else if (innote.type == "Settled") { %>
+            <option name="innote[type]" value="New">New</option>
+            <option name="innote[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="innote[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="innote[type]" value="Restructure">Restructure</option>
+            <option name="innote[type]" value="Settled" selected>Settled (Pelunasan)</option>
+            <option name="innote[type]" value="Auction">Auction (Lelang)</option>
+            <option name="innote[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="innote[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="innote[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="innote[type]" value="Refinancing">Refinancing</option>
+            <% } else if (innote.type == "Auction") { %>
+            <option name="innote[type]" value="New">New</option>
+            <option name="innote[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="innote[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="innote[type]" value="Restructure">Restructure</option>
+            <option name="innote[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="innote[type]" value="Auction" selected>Auction (Lelang)</option>
+            <option name="innote[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="innote[type]" value="Booking">Booking (Pencairan Plafond)</option>
+            <option name="innote[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="innote[type]" value="Refinancing">Refinancing</option>
+            <% } else if(innote.type == "Redemption") { %>
+            <option name="innote[type]" value="New">New</option>
+            <option name="innote[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="innote[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="innote[type]" value="Restructure">Restructure</option>
+            <option name="innote[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="innote[type]" value="Auction">Auction (Lelang)</option>
+            <option name="innote[type]" value="Redemption" selected>Redemption (Penebusan)</option>
+            <option name="innote[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="innote[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="innote[type]" value="Refinancing">Refinancing</option>
+           	<% } else if(innote.type == "Booking") { %>
+            <option name="innote[type]" value="New">New</option>
+            <option name="innote[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="innote[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="innote[type]" value="Restructure">Restructure</option>
+            <option name="innote[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="innote[type]" value="Auction">Auction (Lelang)</option>
+            <option name="innote[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="innote[type]" value="Booking" selected>Booking (Pencairan Plafond)</option>
+			<option name="innote[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="innote[type]" value="Refinancing">Refinancing</option>
+           	<% } else if(innote.type == "Descended") { %>
+            <option name="innote[type]" value="New">New</option>
+            <option name="innote[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="innote[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="innote[type]" value="Restructure">Restructure</option>
+            <option name="innote[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="innote[type]" value="Auction">Auction (Lelang)</option>
+            <option name="innote[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="innote[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="innote[type]" value="Descended" selected>Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="innote[type]" value="Refinancing">Refinancing</option>
+            <% } else { %>
+            <option name="innote[type]" value="New">New</option>
+            <option name="innote[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="innote[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="innote[type]" value="Restructure">Restructure</option>
+            <option name="innote[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="innote[type]" value="Auction">Auction (Lelang)</option>
+            <option name="innote[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="innote[type]" value="Booking">Booking (Pencairan Plafond)</option>
+            <option name="innote[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="innote[type]" value="Refinancing" selected>Refinancing</option>
+            <% } %>
+          </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-6">
+          <label>Outstanding (OS Pokok diajukan/Sisa OS Pokok)</label>
+            <div class="input-group">
+              <span class="input-group-addon">Rp.</span>
+              <input class="form-control form-control-md inputNumberDot" type="text" name="innote[outstanding]" value="<%= innote.outstanding %>" required>
+            </div>
+        </div>
+        <div class="form-group col-6">
+          <label>Exposure (Total OS Pokok)</label>
+            <div class="input-group">
+              <span class="input-group-addon">Rp.</span>
+              <input class="form-control form-control-md inputNumberDot" type="text" name="innote[exposure]" value="<%= innote.exposure %>" required>
+            </div>
+        </div>
+      </div>
+      <div class="form-inline mb-2 mt-2">
+        <label for="innote[level]" class="mr-sm-2 mb-2">Committee Level: </label>
+          <select required name="innote[level]" class="custom-select mb-2 mr-sm-3">
+            <% if (innote.level == "C3") { %>
+            <option name="innote[level]" value="C3" selected>C3</option>
+            <option name="innote[level]" value="B1">B1</option>
+            <option name="innote[level]" value="B2">B2</option>
+            <option name="innote[level]" value="A1">A1</option>
+            <option name="innote[level]" value="A2">A2</option>
+            <% } else if (innote.level == "B1") { %>
+            <option name="innote[level]" value="C3">C3</option>
+            <option name="innote[level]" value="B1" selected>B1</option>
+            <option name="innote[level]" value="B2">B2</option>
+            <option name="innote[level]" value="A1">A1</option>
+            <option name="innote[level]" value="A2">A2</option>
+            <% } else if (innote.level == "B2") { %>
+            <option name="innote[level]" value="C3">C3</option>
+            <option name="innote[level]" value="B1">B1</option>
+            <option name="innote[level]" value="B2" selected>B2</option>
+            <option name="innote[level]" value="A1">A1</option>
+            <option name="innote[level]" value="A2">A2</option>
+            <% } else if (innote.level == "A1") { %>
+            <option name="innote[level]" value="C3">C3</option>
+            <option name="innote[level]" value="B1">B1</option>
+            <option name="innote[level]" value="B2">B2</option>
+            <option name="innote[level]" value="A1" selected>A1</option>
+            <option name="innote[level]" value="A2">A2</option>
+            <% } else { %>
+            <option name="innote[level]" value="C3">C3</option>
+            <option name="innote[level]" value="B1">B1</option>
+            <option name="innote[level]" value="B2">B2</option>
+            <option name="innote[level]" value="A1">A1</option>
+            <option name="innote[level]" value="A2" selected>A2</option>
+            <% } %>
+          </select> 
+        <label for="innote[area]" class="mr-sm-2 mb-2">Select Area: </label>
+          <select required name="innote[area]" id="area" class="custom-select mb-2 mr-sm-3">
+            <% if (innote.area == "Bandung Ahmad Yani") { %>
+            <option name="innote[area]" value="Bandung Ahmad Yani" selected>Bandung Ahmad Yani</option>
+            <option name="innote[area]" value="Bandung Dago">Bandung Dago</option>
+            <option name="innote[area]" value="Cirebon">Cirebon</option>
+            <option name="innote[area]" value="Semarang">Semarang</option>
+            <option name="innote[area]" value="Solo">Solo</option>
+            <option name="innote[area]" value="Yogyakarta">Yogyakarta</option>
+            <% } else if (innote.area == "Bandung Dago") { %>
+            <option name="innote[area]" value="Bandung Ahmad Yani">Bandung Ahmad Yani</option>
+            <option name="innote[area]" value="Bandung Dago" selected>Bandung Dago</option>
+            <option name="innote[area]" value="Cirebon">Cirebon</option>
+            <option name="innote[area]" value="Semarang">Semarang</option>
+            <option name="innote[area]" value="Solo">Solo</option>
+            <option name="innote[area]" value="Yogyakarta">Yogyakarta</option>
+            <% } else if (innote.area == "Cirebon") { %>
+            <option name="innote[area]" value="Bandung Ahmad Yani">Bandung Ahmad Yani</option>
+            <option name="innote[area]" value="Bandung Dago">Bandung Dago</option>
+            <option name="innote[area]" value="Cirebon" selected>Cirebon</option>
+            <option name="innote[area]" value="Semarang">Semarang</option>
+            <option name="innote[area]" value="Solo">Solo</option>
+            <option name="innote[area]" value="Yogyakarta">Yogyakarta</option>
+            <% } else if (innote.area == "Semarang") { %>
+            <option name="innote[area]" value="Bandung Ahmad Yani">Bandung Ahmad Yani</option>
+            <option name="innote[area]" value="Bandung Dago">Bandung Dago</option>
+            <option name="innote[area]" value="Cirebon">Cirebon</option>
+            <option name="innote[area]" value="Semarang" selected>Semarang</option>
+            <option name="innote[area]" value="Solo">Solo</option>
+            <option name="innote[area]" value="Yogyakarta">Yogyakarta</option>
+            <% } else if (innote.area == "Solo") { %>
+            <option name="innote[area]" value="Bandung Ahmad Yani">Bandung Ahmad Yani</option>
+            <option name="innote[area]" value="Bandung Dago">Bandung Dago</option>
+            <option name="innote[area]" value="Cirebon">Cirebon</option>
+            <option name="innote[area]" value="Semarang">Semarang</option>
+            <option name="innote[area]" value="Solo" selected>Solo</option>
+            <option name="innote[area]" value="Yogyakarta">Yogyakarta</option>
+            <% } else { %>
+            <option name="innote[area]" value="Bandung Ahmad Yani">Bandung Ahmad Yani</option>
+            <option name="innote[area]" value="Bandung Dago">Bandung Dago</option>
+            <option name="innote[area]" value="Cirebon">Cirebon</option>
+            <option name="innote[area]" value="Semarang">Semarang</option>
+            <option name="innote[area]" value="Solo">Solo</option>
+            <option name="innote[area]" value="Yogyakarta" selected>Yogyakarta</option>
+            <% } %>
+          </select> 
+      </div>  
+       <div class="form-group" style="margin-right:70%;">
+				<label>Archive Code:</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-archive"></i></span>
+						<input class="form-control form-control-md upper" type="text" name="innote[archive]" data-toggle="tooltip" title="See The Code of Archive on Bindex." value="<%= innote.archive %>">
+					</div>	
+			</div>
+       
+        <div class="form-group">
+          <label>Remark (Penjelasan)</label>
+          <textarea class="form-control form-control-md case" rows="2" name="innote[remark]"><%= innote.remark %></textarea>
+        </div>
+        <div class="form-group">
+          <label>Upload Documents (only upload a maximum of 3 pdf files): </label>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+          </div>  
+        <div class="form-group">
+          <input class="form-control form-control-md" type="hidden" name="innote[user]" required value="<%= innote.user %>">
+        </div>
+        <div class="form-group">
+          <input class="form-control form-control-md" type="hidden" name="innote[editor]" required value="<%= currentUser.fullname %>">
+        </div> 
+          <input class="container-fluid btn btn-success btn-lg customSubmitMargin" type="submit">
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../functions/editinnotefuncs %>
+<% include ../functions/upload %>

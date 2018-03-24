@@ -1,0 +1,44 @@
+<% include ../partials/header %>
+
+<div class="container list">
+  <div class="row justify-content-around"> 
+    <div class="col-10"> 
+      <div class="text-center">
+        <h1>Change Password</h1>
+        <p>
+        <a class="btn btn-primary btn-lg btn-block" href="/users/<%= currentUser._id%>">Back to Profile</a>
+      </p>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-around">
+		<div class=col-10>
+			<form action="/users/<%= user._id %>/change" method="POST">
+			
+				<div class="form-row">
+          <div class="form-group col-6">
+						<label>New Password</label>
+  						<div class="input-group">
+  							<span class="input-group-addon"><i class="fa fa-vcard-o"></i></span>
+  							<input class="form-control form-control-md" type="password" name="password" placeholder="New Password" required>
+  						</div> 
+          </div>
+          <div class="form-group col-6"> 
+            <label>Confirm Password</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-vcard"></i></span>
+                <input class="form-control form-control-md" type="password" name="confirm" placeholder="Confirm Password" required>
+              </div> 
+					</div>  
+					<input class="container-fluid btn btn-success btn-lg" type="submit">
+				</div>	
+			</form>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer %>
+<% include ../functions/showfuncs %>

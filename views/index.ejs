@@ -1,0 +1,67 @@
+<% include ./partials/header %>
+
+<div class="container text-center mt-5">
+	<div class="card-deck">
+		<div class="card">
+			<a href="/letters" class="card-body">
+				<h3 class="card-title"><i class="fa fa-envelope" style="font-size:4em;"></i></h3>
+				<h3 class="card-subtitle" style="font-size:4em;"><%= letters %></h3>
+				<h3 class="card-subtitle" style="font-size:2em;">Letters</h3>
+			</a>
+		</div>
+		<div class="card">
+			<a href="/memos" class="card-body">
+				<h3 class="card-title"><i class="fa fa-map-o" style="font-size:4em;"></i></h3>
+				<h3 class="card-subtitle" style="font-size:4em;"><%= memos %></h3>
+				<h3 class="card-subtitle" style="font-size:2em;">Memos</h3>
+			</a>
+		</div>
+	</div>
+</div>	
+
+<div class="container text-center mt-5">
+	<div class="card-deck">
+		<div class="card">
+			<a href="/noms" class="card-body">
+				<h3 class="card-title"><i class="fa fa-comments" style="font-size:4em;"></i></h3>
+				<h3 class="card-subtitle" style="font-size:4em;"><%= noms %></h3>
+				<h3 class="card-subtitle" style="font-size:2em;">Notes Of Meeting</h3>
+			</a>
+		</div>	
+		<div class="card">
+			<a href="/notes" class="card-body">
+				<h3 class="card-title"><i class="fa fa-edit" style="font-size:4em;"></i></h3>
+				<h3 class="card-subtitle" style="font-size:4em;"><%= notes %></h3>
+				<h3 class="card-subtitle" style="font-size:2em;">Notes</h3>
+			</a>
+		</div>
+	</div>
+</div>	
+
+<div class="container text-center mt-5">
+	<div class="card-deck">
+		<div class="card">
+			<a href="/inletters" class="card-body">
+				<h3 class="card-title"><i class="fa fa-envelope-open-o" style="font-size:4em;"></i></h3>
+				<h3 class="card-subtitle" style="font-size:4em;"><%= inletters %></h3>
+				<h3 class="card-subtitle" style="font-size:2em;">Incoming Letters</h3>
+			</a>
+		</div>
+		<div class="card">
+			<a href="/inmemos" class="card-body">
+				<h3 class="card-title"><i class="fa fa-folder-open" style="font-size:4em;"></i></h3>
+				<h3 class="card-subtitle" style="font-size:4em;"><%= inmemos %></h3>
+				<h3 class="card-subtitle" style="font-size:2em;">Incoming Memos</h3>
+			</a>
+		</div>
+		<div class="card">
+			<a href="/innotes" class="card-body">
+				<h3 class="card-title"><i class="fa fa-pencil-square" style="font-size:4em;"></i></h3>
+				<h3 class="card-subtitle" style="font-size:4em;"><%= innotes %></h3>
+				<h3 class="card-subtitle" style="font-size:2em;">Incoming Notes</h3>
+			</a>
+		</div>
+	</div>
+</div>	
+
+<% include ./partials/footer %>

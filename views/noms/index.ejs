@@ -1,0 +1,113 @@
+<% include ../partials/header %>
+
+<div class="container list">
+	<div class="row justify-content-around"> 
+		<div class="col-12"> 
+			<div class="text-center">
+			<h1>List of All Outgoing Notes of Meeting</h1>
+			<p>
+				<a class="btn btn-success btn-lg btn-block" href="/noms/new">Generate Outgoing Notes of Meeting Number</a>
+			</p>
+		</div>
+		</div>
+	</div> 
+</div>
+
+<div class="container table-list">
+ <div class="row justify-content-center">
+	 <div class="scrollme table-responsive">
+		<table class="table table-striped table-hover table-sm" id="tbid">
+			<thead class="thead-dark">
+				<tr>
+					<th style="width:12em">Number</th>
+					<th style="width:5em">Date</th>
+					<th>Debtor</th>
+					<th style="width:4.8em">Segment</th>
+					<th style="width:3em">OS M</th>
+					<th style="width:5em">Type</th>
+					<th style="width:2em">Lvl</th>
+					<th>Author</th>
+					<th>Area</th>
+					<th>User</th>
+					<th style="width:1.8em">Arc</th>
+					<th style="width:1.9em">Doc</th>
+					<th style="width:1.8em">Act</th>
+				</tr>
+			</thead>
+			<tfoot>
+        <tr>
+	        <th style="width:12em">Number</th>
+	        <th style="width:5em">Date</th>
+	        <th>Debtor</th>
+	        <th style="width:4.8em">Segment</th>
+	        <th style="width:3em">OS M</th>
+	        <th style="width:5em">Type</th>
+	        <th style="width:2em">Lvl</th>
+	        <th>Author</th>
+	        <th>Area</th>
+	        <th>User</th>
+	        <th style="width:1.8em">Arc</th>
+	        <th style="width:1.9em">Doc</th>
+	        <th disabled="disabled" style="width:1.8em">Act</th>
+        </tr>
+      </tfoot>
+			<tbody>
+				<tr>
+					<% noms.forEach(function(nom){ %>
+					<td style="width:12em"><a href="/noms/<%= nom._id %>"><%= nom.ltrNmbr %></a></td>
+					<td style="width:5em"><%= nom.date %></td>
+					<td><%= nom.debtor %></td>
+					<td style="width:4.8em"><%= nom.segment %></td>
+					<% var str = nom.outstanding.replace(/,/g, ""); %>
+					<% var num = str/1000000 %>
+					<td class="remove text-right" style="width:3em;"><%= accounting(num,{precision: 0}); %></td>
+					<td style="width:5em"><%= nom.type %></td>
+					<td style="width:2em"><%= nom.level %></td>
+					<td><%= nom.author1  %> & <%=  nom.author2 %></td>
+					<td><%= nom.area %></td>
+					<td><%= nom.user %></td>
+					<td style="width:1.8em;"><%= nom.archive %></td>
+					<% if ( nom.documents == undefined || nom.documents.length == 0 ) { %>
+					<td></td>
+					<% } else { %>
+					<td class="text-center" style="text-align:middle;width:1.9em;">
+						AV
+					</td>
+					<% } %>
+					<td class="text-center" style="text-align:middle; width:1.8em">
+						<button style="height:20px;width:6px" data-toggle="tooltip" title="Copied" class="btn btn-copy">
+    					<span class="fa fa-clipboard" aria-hidden="true" style="font-size:10px; position:relative; top:-11px; right:3px;"></span>
+						</button>
+					</td>
+				</tr>
+				<% }); %>
+			</tbody>
+		</table>
+		</div>
+ 	</div>
+ </div>
+
+
+<% include ../partials/footer %>
+<% include ../functions/indexfuncs %>
+<script>
+	$('.btn-copy').on('click', function(){
+  element = $(this).closest('tr').children('td:first')[0];
+  var selection = window.getSelection();        
+  var range = document.createRange();
+  range.selectNodeContents(element);
+  selection.removeAllRanges();
+  selection.addRange(range);
+  //Losely based on http://stackoverflow.com/a/40734974/7668911
+    try {
+       var successful = document.execCommand('copy');
+      if(successful) {
+        $('.res').html("Coppied");
+      }
+       else
+       { $('.res').html("Unable to copy!");} 
+   } catch (err) {
+      $('.res').html(err);
+   }
+});
+</script>

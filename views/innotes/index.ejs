@@ -1,0 +1,85 @@
+<% include ../partials/header %>
+
+<div class="container list">
+	<div class="row justify-content-around"> 
+		<div class="col-12"> 
+			<div class="text-center">
+			<h1>List of All Incoming Notes</h1>
+			<p>
+				<a class="btn btn-success btn-lg btn-block" href="/innotes/new">Store Incoming Note Number</a>
+			</p>
+		</div>
+		</div>
+	</div> 
+</div>
+
+<div class="container table-list">
+ <div class="row justify-content-center">
+	 <div class="scrollme table-responsive">
+		<table class="table table-striped table-hover table-sm" id="tbid">
+			<thead class="thead-dark">
+				<tr>
+					<th style="width:1em">Date</th>
+					<th style="width:2.4em">Number</th>
+					<th style="width:3em">Debtor</th>
+					<th style="width:2em">Proposer</th>
+					<th style="width:2em">Area</th>
+					<th style="width:1.2em">Segment</th>
+					<th style="width:1.3em">Type</th>
+					<th style="width:0.3em">Level</th>
+					<th style="width:1em">OS M</th>
+					<th style="width:1em">User</th>
+					<th style="width:0.5em">Arc</th>
+					<th style="width:0.2em">Doc</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th style="width:1em">Date</th>
+					<th style="width:2.4em">Number</th>
+					<th style="width:3em">Debtor</th>
+					<th style="width:2em">Proposer</th>
+					<th style="width:2em">Area</th>
+					<th style="width:1.2em">Segment</th>
+					<th style="width:1.3em">Type</th>
+					<th style="width:0.3em">Level</th>
+					<th style="width:1em">OS M</th>
+					<th style="width:1em">User</th>
+					<th style="width:0.5em">Arc</th>
+					<th style="width:0.2em">Doc</th>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr>
+					<% innotes.forEach(function(innote){ %>
+					<td style="width:1em"><%= innote.date %></td>
+					<td style="width:2.4em"><a href="/innotes/<%= innote._id %>"><%= innote.ltrNmbr %></a></td>
+					<td style="width:3em"><%= innote.debtor %></td>
+					<td style="width:2em"><%= innote.proposer %></td>
+					<td style="width:2em"><%= innote.area %></td>
+					<td style="width:1.2em"><%= innote.segment %></td>
+					<td style="width:1.3em"><%= innote.type %></td>
+					<td style="width:0.3em"><%= innote.level %></td>
+					<% var str = innote.outstanding.replace(/,/g, ""); %>
+					<% var num = str/1000000 %>
+					<td class="text-right" style="width:1em"><%= accounting(num,{precision: 0}); %></td>
+					<td style="width:1em"><%= innote.user %></td>
+					<td style="width:0.5em"><%= innote.archive %></td>
+					<% if ( innote.documents == undefined || innote.documents.length == 0 ) { %>
+					<td></td>
+					<% } else { %>
+					<td class="text-center" style="text-align:middle;width:0.2em;">
+						AV
+					</td>
+					<% } %>
+				</tr>
+				<% }); %>
+			</tbody>
+		</table>
+		</div>
+ 	</div>
+ </div>
+ 
+
+<% include ../partials/footer %>
+<% include ../functions/indexfuncs %>

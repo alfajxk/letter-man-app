@@ -1,0 +1,128 @@
+<% include ../partials/header %>
+
+<div class="container list">
+  <div class="row justify-content-around"> 
+    <div class="col-10"> 
+      <div class="text-center">
+        <h1>Edit Number</h1>
+        	<p>
+        		<a class="btn btn-primary btn-lg btn-block" href="/memos">List Outgoing Memos</a>
+      		</p>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-around">
+  <div class=col-10>
+    <form action="/memos/<%= memo._id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+      <div class="form-group">
+        <input class="form-control" type="hidden" name="memo[counter]" placeholder="counter" value="<%= memo.counter %>">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="hidden" name="memo[prefix]" placeholder="prefix" value="<%= memo.prefix %>">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <!--NUMBER FIELD-->
+           <label>Number</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-telegram"></i></span>
+              <input class="form-control form-control-md" type="text" name="memo[ltrNmbr]" value="<%= memo.ltrNmbr %>" readonly>
+            </div>
+        </div>
+      </div>
+        
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label>Recipient (Penerima)</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input class="form-control form-control-md case" type="text" name="memo[recipient]" value="<%= memo.recipient %>" required>
+            </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Subject (Perihal)</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+            <input class="form-control form-control-md case" type="text" name="memo[subject]" value="<%= memo.subject %>" required>
+          </div>
+        </div>
+        <div class="form-group col-3">
+          <label>Date</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            <input class="form-control form-control-md date" type="text" name="memo[date]" value="<%= memo.date %>" required>
+          </div>
+        </div>
+      </div>
+      <div class="form-inline mb-2 mt-2">
+        <label for="memo[confidential]" class="mr-sm-2 mb-2">Confidential: </label>
+          <select required name="memo[confidential]" class="custom-select mb-2 mr-sm-5">
+            <% if (memo.confidential == "No" | memo.confidential == null) { %>
+            <option name="memo[confidential]" value="No" selected>No</option>
+            <option name="memo[confidential]" value="Yes">Yes</option>
+            <% } else { %>
+            <option name="memo[confidential]" value="No">No</option>
+            <option name="memo[confidential]" value="Yes" selected>Yes</option>
+            <% } %>
+          </select> 
+      </div>
+      <div class="form-group" style="margin-right:70%;">
+				<label>Archive Code:</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-archive"></i></span>
+						<input class="form-control form-control-md upper" type="text" name="memo[archive]" data-toggle="tooltip" title="See The Code of Archive on Bindex." value="<%= memo.archive %>">
+					</div>	
+			</div>
+        <div class="form-group">
+          <label>Remark (Penjelasan)</label>
+          <textarea class="form-control form-control-md case" rows="2" name="memo[remark]"><%= memo.remark %></textarea>
+        </div>
+        <div class="form-group">
+          <label>Upload Documents (only upload a maximum of 3 pdf files): </label>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+          </div>
+        <div class="form-group">
+          <input class="form-control form-control-md" type="hidden" name="memo[sender]" required value="<%= memo.sender %>">
+        </div>
+        <div class="form-group">
+          <input class="form-control form-control-md" type="hidden" name="memo[editor]" required value="<%= currentUser.fullname %>">
+        </div> 
+          <input class="container-fluid btn btn-success btn-lg customSubmitMargin" type="submit">
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../functions/editfuncs %>
+<% include ../functions/upload %>

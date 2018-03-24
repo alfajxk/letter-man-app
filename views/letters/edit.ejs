@@ -1,0 +1,138 @@
+<% include ../partials/header %>
+
+<div class="container list">
+  <div class="row justify-content-around"> 
+    <div class="col-10"> 
+      <div class="text-center">
+        <h1>Edit Number</h1>
+        	<p>
+        		<a class="btn btn-primary btn-lg btn-block" href="/letters">List Outgoing Letters</a>
+      		</p>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-around">
+  <div class=col-10>
+    <form action="/letters/<%= letter._id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+      <div class="form-group">
+        <input class="form-control" type="hidden" name="letter[counter]" placeholder="counter" value="<%= letter.counter %>">
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="hidden" name="letter[prefix]" placeholder="prefix" value="<%= letter.prefix %>">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <!--NUMBER FIELD-->
+           <label>Number</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-telegram"></i></span>
+              <input class="form-control form-control-md" type="text" name="letter[ltrNmbr]" value="<%= letter.ltrNmbr %>" readonly>
+            </div>
+        </div>
+      </div>
+        
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label>Recipient (Penerima)</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input class="form-control form-control-md case" type="text" name="letter[recipient]" value="<%= letter.recipient %>" required>
+            </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Subject (Perihal)</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+            <input class="form-control form-control-md case" type="text" name="letter[subject]" value="<%= letter.subject %>" required>
+          </div>
+        </div>
+        <div class="form-group col-3">
+          <label>Date</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            <input class="form-control form-control-md date" type="text" name="letter[date]" value="<%= letter.date %>" required>
+          </div>
+        </div>
+      </div>
+      <div class="form-inline mb-2 mt-2">
+        <label for="letter[type]" class="mr-sm-2 mb-2">Recipient Type: </label>
+          <select required name="letter[type]" class="custom-select mb-2 mr-sm-5">
+            <% if (letter.type == "Internal") { %>
+            <option name="letter[type]" value="Internal" selected>Internal</option>
+            <option name="letter[type]" value="External">External</option>
+            <% } else { %>
+            <option name="letter[type]" value="Internal">Internal</option>
+            <option name="letter[type]" value="External" selected>External</option>
+            <% } %>
+          </select> 
+        <label for="letter[confidential]" class="mr-sm-2 mb-2">Confidential: </label>
+          <select required name="letter[confidential]" class="custom-select mb-2 mr-sm-5">
+            <% if (letter.confidential == "No" | letter.confidential == null) { %>
+            <option name="letter[confidential]" value="No" selected>No</option>
+            <option name="letter[confidential]" value="Yes">Yes</option>
+            <% } else { %>
+            <option name="letter[confidential]" value="No">No</option>
+            <option name="letter[confidential]" value="Yes" selected>Yes</option>
+            <% } %>
+          </select> 
+      </div>
+       <div class="form-group" style="margin-right:70%;">
+				<label>Archive Code:</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-archive"></i></span>
+						<input class="form-control form-control-md upper" type="text" name="letter[archive]" data-toggle="tooltip" title="See The Code of Archive on Bindex." value="<%= letter.archive %>">
+					</div>	
+				</div>
+        <div class="form-group">
+          <label>Remark (Penjelasan)</label>
+          <textarea class="form-control form-control-md case" rows="2" name="letter[remark]"><%= letter.remark %></textarea>
+        </div>
+    
+        <div class="form-group">
+          <label>Upload Documents (only upload a maximum of 3 pdf files): </label>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+          </div>
+        <div class="form-group">
+          <input class="form-control form-control-md" type="hidden" name="letter[sender]" required value="<%= letter.sender %>">
+        </div>
+        <div class="form-group">
+          <input class="form-control form-control-md" type="hidden" name="letter[editor]" required value="<%= currentUser.fullname %>">
+        </div> 
+          <input class="container-fluid btn btn-success btn-lg customSubmitMargin" type="submit">
+      </form>
+    </div>
+  </div>
+</div>
+
+<% include ../partials/footer %>
+<% include ../functions/editfuncs %>
+<% include ../functions/upload %>

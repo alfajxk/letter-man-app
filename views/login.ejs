@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Letter Man App</title>
+    <!-- Required meta tags --> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css"> 
+    <!-- Bootstrap CSS --> 
+    <link rel="stylesheet" href="/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="/css/login.css"> 
+  </head> 
+  <body> 
+<div style="position:relative;" class="container">
+  <div>
+  <h1 class="shadow"><i class="fa fa-modx"></i></h1>
+  <h2 class="shadow">Letter Man App</h2>
+  <br>
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <input type="text" name="username" class="form-control" autofocus placeholder="Username">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-telegram"></i> Post Me In</button>
+      <br>
+      <div style="margin-top:-5%;" class="text-center">
+      <a href="/register"  style="color: white;"">Can Not Post?</a>
+      </div>
+    </form>
+   <footer style="margin-top:5%; height:30vh; display:flex; flex-direction:column; flex:1;" class="shadow">
+		 <p>Copyright © 2017 - <%= new Date().getFullYear() %></p>
+		 <p style="margin-top:-5%;">Al Farisi Ibnu Majah</p>
+	</footer>
+  </div>
+</div>
+
+      
+
+
+    <script src="/js/jquery.js"></script> 
+    <script src="/js/popper-1.12.3.min.js"></script> 
+    <script src="/js/bootstrap.bundle.min.js"></script> 
+  </body>
+</html>

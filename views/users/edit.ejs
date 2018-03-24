@@ -1,0 +1,90 @@
+<% include ../partials/header %>
+
+<div class="container list">
+  <div class="row justify-content-around"> 
+    <div class="col-10"> 
+      <div class="text-center">
+        <h1>Edit User</h1>
+        <p>
+        <a class="btn btn-primary btn-lg btn-block" href="/users">List All Users</a>
+      </p>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-around">
+		<div class=col-10>
+			<form action="/users/<%= user._id %>?_method=PUT" method="POST">
+			
+				<div class="form-row">
+					<div class="form-group col-6">
+						 <label>Username</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user"></i></span>
+								<input class="form-control form-control-md" type="text" name="user[username]" placeholder="Username" value="<%= user.username %>" required>
+							</div>  
+					</div>  
+
+					<div class="form-group col-6">
+						<label>Email </label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope-open"></i></span>
+							<input class="form-control form-control-md" type="text" name="user[email]" value="<%= user.email %>" required>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-row">
+					<div class="form-group col-6">
+						<label>Full Name</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-vcard"></i></span>
+								<input class="form-control form-control-md case" type="text" name="user[fullname]" value="<%= user.fullname %>" required>
+							</div>
+					</div>
+					<div class="form-group col-6">
+						<label for="user[role]">Role:</label>
+						<div>
+							<select required name="user[role]" style="width:500px;" class="custom-select">
+							<% if (currentUser.role == "user" && user.role == "user") { %>
+								<option name="user[role]" value="user" selected>User</option>
+								<% } else if (currentUser.role == "admin" && user.role == "user") { %>
+								<option name="user[role]" value="user" selected>User</option>
+								<option name="user[role]" value="admin">Admin</option>
+								<% } else { %>
+								<option name="user[role]" value="user">User</option>
+								<option name="user[role]" value="admin" selected>Admin</option>
+								<% } %>
+							</select> 
+						</div>
+					</div>
+					<input class="container-fluid btn btn-success btn-lg" type="submit">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+          </div>
+          <div class="modal-body">
+              <p>You are about to delete record, this procedure is irreversible.</p>
+              <p>Do you want to proceed?</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-danger btn-ok" id="delete">Delete</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<% include ../partials/footer %>
+<% include ../functions/showfuncs %>

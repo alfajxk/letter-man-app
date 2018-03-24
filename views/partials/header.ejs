@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Letter Man App</title>
+		<!-- Required meta tags --> 
+		<meta charset="utf-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+		<!-- Font Awesome CSS -->
+		<link rel="stylesheet" href="/css/font-awesome.min.css"> 
+		<!-- Bootstrap CSS --> 
+    <link rel="stylesheet" href="/css/bootstrap.min.css"> 
+		<link rel="stylesheet" href="/css/app.css"> 
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css"> 
+    <link rel="stylesheet" href="/css/dataTables.bootstrap4.min.css"> 
+    <link rel="stylesheet" href="/css/toggle.css"> 
+	</head> 
+	<body> 
+    <section class="content">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+			<a class="navbar-brand" href="/"><i class="fa fa-modx fa-lg"></i> LetterMan</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Generate
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="/letters/new">Letters</a>
+							<a class="dropdown-item" href="/memos/new">Memos</a>
+							<a class="dropdown-item" href="/noms/new">Notes of Meeting</a>
+							<a class="dropdown-item" href="/notes/new">Notes</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							List
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="/letters">Letters</a>
+							<a class="dropdown-item" href="/memos">Memos</a>
+							<a class="dropdown-item" href="/noms">Notes of Meeting</a>
+							<a class="dropdown-item" href="/notes">Notes</a>
+						</div>
+					</li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Incoming
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/inletters/new">Incoming Letters</a>
+              <a class="dropdown-item" href="/inmemos/new">Incoming Memos</a>
+              <a class="dropdown-item" href="/innotes/new">Incoming Notes</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              List of Incoming
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/inletters">List Incoming Letters</a>
+              <a class="dropdown-item" href="/inmemos">List Incoming Memos</a>
+              <a class="dropdown-item" href="/innotes">List Incoming Notes</a>
+            </div>
+          </li>
+          <% if(currentUser.role === 'admin') { %>
+          <li class="nav-item dropdown">
+          	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Users
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/users">List All Users</a>
+              <a class="dropdown-item" href="/register">Register User</a>
+            </div>
+          </li>
+          <% } else { %>
+          <% } %>
+				</ul>
+				<ul class="navbar-nav">	
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sign In As <%= currentUser.fullname %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/users/<%= currentUser._id%>">Profile</a>
+              <a class="dropdown-item" href="/users/<%= currentUser._id%>/change">Change Password</a>
+            </div>
+          </li>
+   				<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+				</ul>
+			</div>
+			</div>
+		</nav>

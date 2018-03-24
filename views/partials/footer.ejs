@@ -1,0 +1,24 @@
+  </section>
+    <footer id="myFooter">  
+        <div class="footer-copyright">
+            <p>Copyright © 2017 - <%= new Date().getFullYear() %> Al Farisi Ibnu Majah</p>
+        </div>
+    </footer>
+    <script src="/js/jquery.js"></script> 
+    <script src="/js/popper-1.12.3.min.js"></script> 
+    <script src="/js/bootstrap.bundle.min.js"></script> 
+    <script src="/js/bootstrap-datepicker.js"></script> 
+    <script src="/js/SetCase.js"></script> 
+    <script src="/js/jquery.dataTables.min.js"></script> 
+    <script src="/js/dataTables.bootstrap4.js"></script>
+    <script src="/js/autoNumeric.js"></script>
+    <script>
+        $('body').on('mouseenter mouseleave','.dropdown',function(e){
+          var _d=$(e.target).closest('.dropdown');_d.addClass('show');
+          setTimeout(function(){
+            _d[_d.is(':hover')?'addClass':'removeClass']('show');
+          },300);
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<script>
+	 //DATEPICKER NOW
+      $(document).ready(function(){$('#nowdate').datepicker(
+			"setDate", new Date()
+			);
+    });
+      //TITLE CASE
+      $(function() {
+        $(".case").Setcase({caseValue : 'pascal'});
+      });
+		// TOOLTIP
+      $(document).ready(function(){$('[data-toggle="tooltip"]').tooltip({
+          placement: 'top',
+          trigger: 'hover'
+      });
+    });
+      // AutoNumeric   
+      jQuery(function($) {
+          $('.inputNumberDot').autoNumeric('init');    
+      });
+</script>

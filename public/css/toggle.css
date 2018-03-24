@@ -1,0 +1,60 @@
+/* Checkbox body */
+
+.toggle1 {
+  display: block;
+  width: 54px;
+  height: 32px;
+  margin: 0px auto;
+  margin-left: 5px;
+  border-radius: 100px;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  background-color: #E6E9EC;
+}
+
+#toggly {
+  display: none;
+}
+
+
+/* The toggle */
+
+.toggle2 {
+  height: 28px;
+  width: 28px;
+  background: #ffffff;
+  display: inline-block;
+  border-radius: 100px;
+  margin-top: -1px;
+  margin-left: -20px;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  pointer-events: none;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.toggle1:hover>i {
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.20);
+  transform: scale(1.01);
+}
+
+#toggly:checked+.toggle1>i {
+  margin-left: 24px;
+}
+
+.toggle1:active {
+  background-color: #A6B9CB;
+}
+
+.toggle1:active>i {
+  width: 34px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
+}
+
+#toggly:checked+.toggle1:active>i {
+  margin-left: 18px;
+}
+
+#toggly:checked+.toggle1 {
+  background-color: #008FFF;
+}

@@ -1,0 +1,406 @@
+<% include ../partials/header %>
+
+<div class="container list">
+  <div class="row justify-content-around"> 
+    <div class="col-10"> 
+      <div class="text-center">
+        <h1>Edit Number</h1>
+        <p>
+        <a class="btn btn-primary btn-lg btn-block" href="/noms">List Outgoing Notes of Meeting</a>
+      </p>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-around">
+  <div class=col-10>
+    <form action="/noms/<%= nom._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+
+      <div class="container">
+        <div class="form-group">
+          <input class="form-control" type="hidden" name="nom[counter]" value="<%= nom.counter %>">
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="hidden" name="nom[prefix]" value="<%= nom.prefix %>">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <!-- Number -->
+          <label>Number</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-telegram"></i></span>
+              <input class="form-control form-control-md" type="text" name="nom[ltrNmbr]" id="nmbr" value="<%= nom.ltrNmbr %>" readonly>
+            </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-3">
+          <label>Date</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+              <input class="form-control form-control-md date" type="text" name="nom[date]" value="<%= nom.date %>" required>
+            </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Debtor</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input class="form-control form-control-md case" type="text" name="nom[debtor]" placeholder="Debtor" value="<%= nom.debtor %>" required>
+            </div>
+        </div>
+        <div class="form-group col-4">
+          <label>Proposer</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+              <input class="form-control form-control-md case" type="text" name="nom[proposer]" placeholder="Proposer" value="<%= nom.proposer %>" required>
+            </div>
+        </div>
+      </div>
+      <div class="form-inline mb-2 mt-2">
+        <label for="nom[segment]" class="mr-sm-2 mb-2">Select Segment Type: </label>
+          <select required name="nom[segment]" class="custom-select mb-2 mr-sm-5">
+            <% if (nom.segment == "BBG") { %>
+            <option name="nom[segment]" value="BBG" selected>BBG</option>
+            <option name="nom[segment]" value="CHG">CHG (Consumer)</option>
+            <option name="nom[segment]" value="MBG">MBG (Micro)</option>
+            <option name="nom[segment]" value="PWG">PWG</option>
+            <option name="nom[segment]" value="CMG">CMG (Wholesale)</option>
+            <% } else if (nom.segment == "CHG") { %>
+            <option name="nom[segment]" value="BBG">BBG</option>
+            <option name="nom[segment]" value="CHG" selected>CHG (Consumer)</option>
+            <option name="nom[segment]" value="MBG">MBG (Micro)</option>
+            <option name="nom[segment]" value="PWG">PWG</option>
+            <option name="nom[segment]" value="CMG">CMG (Wholesale)</option>
+            <% } else if (nom.segment == "MBG") { %>
+            <option name="nom[segment]" value="BBG">BBG</option>
+            <option name="nom[segment]" value="CHG">CHG (Consumer)</option>
+            <option name="nom[segment]" value="MBG" selected="">MBG (Micro)</option>
+            <option name="nom[segment]" value="PWG">PWG</option>
+            <option name="nom[segment]" value="CMG">CMG (Wholesale)</option>
+            <% } else if (nom.segment == "PWG") { %>
+            <option name="nom[segment]" value="BBG">BBG</option>
+            <option name="nom[segment]" value="CHG">CHG (Consumer)</option>
+            <option name="nom[segment]" value="MBG">MBG (Micro)</option>
+            <option name="nom[segment]" value="PWG" selected="">PWG</option>
+            <option name="nom[segment]" value="CMG">CMG (Wholesale)</option>
+            <% } else { %>
+            <option name="nom[segment]" value="BBG">BBG</option>
+            <option name="nom[segment]" value="CHG">CHG (Consumer)</option>
+            <option name="nom[segment]" value="MBG">MBG (Micro)</option>
+            <option name="nom[segment]" value="PWG">PWG</option>
+            <option name="nom[segment]" value="CMG" selected="">CMG (Wholesale)</option>
+            <% } %>
+          </select>
+        <label for="nom[type]" class="mr-sm-2 mb-2">Select Financing Type: </label>
+          <select required name="nom[type]" class="custom-select mb-2 mr-sm-2">
+            <% if (nom.type == "New") { %>
+            <option name="nom[type]" value="New" selected>New</option>
+            <option name="nom[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="nom[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="nom[type]" value="Restructure">Restructure</option>
+            <option name="nom[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="nom[type]" value="Auction">Auction (Lelang)</option>
+            <option name="nom[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="nom[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="nom[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="nom[type]" value="Refinancing">Refinancing</option>
+            <% } else if (nom.type == "Prolongation") { %>
+            <option name="nom[type]" value="New">New</option>
+            <option name="nom[type]" value="Prolongation" selected>Prolongation (Perpanjangan)</option>
+            <option name="nom[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="nom[type]" value="Restructure">Restructure</option>
+            <option name="nom[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="nom[type]" value="Auction">Auction (Lelang)</option>
+            <option name="nom[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="nom[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="nom[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="nom[type]" value="Refinancing">Refinancing</option>
+            <% } else if (nom.type == "Increment") { %>
+            <option name="nom[type]" value="New">New</option>
+            <option name="nom[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="nom[type]" value="Increment" selected>Increment (Top Up/Penambahan)</option>
+            <option name="nom[type]" value="Restructure">Restructure</option>
+            <option name="nom[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="nom[type]" value="Auction">Auction (Lelang)</option>
+            <option name="nom[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="nom[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="nom[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="nom[type]" value="Refinancing">Refinancing</option>
+            <% } else if (nom.type == "Restructure") { %>
+            <option name="nom[type]" value="New">New</option>
+            <option name="nom[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="nom[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="nom[type]" value="Restructure" selected>Restructure</option>
+            <option name="nom[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="nom[type]" value="Auction">Auction (Lelang)</option>
+            <option name="nom[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="nom[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="nom[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="nom[type]" value="Refinancing">Refinancing</option>
+            <% } else if (nom.type == "Settled") { %>
+            <option name="nom[type]" value="New">New</option>
+            <option name="nom[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="nom[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="nom[type]" value="Restructure">Restructure</option>
+            <option name="nom[type]" value="Settled" selected>Settled (Pelunasan)</option>
+            <option name="nom[type]" value="Auction">Auction (Lelang)</option>
+            <option name="nom[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="nom[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="nom[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="nom[type]" value="Refinancing">Refinancing</option>
+            <% } else if (nom.type == "Auction") { %>
+            <option name="nom[type]" value="New">New</option>
+            <option name="nom[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="nom[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="nom[type]" value="Restructure">Restructure</option>
+            <option name="nom[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="nom[type]" value="Auction" selected>Auction (Lelang)</option>
+            <option name="nom[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="nom[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="nom[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="nom[type]" value="Refinancing">Refinancing</option>
+            <% } else if (nom.type == "Redemption") { %>
+            <option name="nom[type]" value="New">New</option>
+            <option name="nom[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="nom[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="nom[type]" value="Restructure">Restructure</option>
+            <option name="nom[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="nom[type]" value="Auction">Auction (Lelang)</option>
+            <option name="nom[type]" value="Redemption" selected>Redemption (Penebusan)</option>
+            <option name="nom[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="nom[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="nom[type]" value="Refinancing">Refinancing</option>
+           	<% } else if (nom.type == "Booking") { %>
+            <option name="nom[type]" value="New">New</option>
+            <option name="nom[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="nom[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="nom[type]" value="Restructure">Restructure</option>
+            <option name="nom[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="nom[type]" value="Auction">Auction (Lelang)</option>
+            <option name="nom[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="nom[type]" value="Booking" selected>Booking (Pencairan Plafond)</option>
+			<option name="nom[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="nom[type]" value="Refinancing">Refinancing</option>
+           	<% } else if (nom.type == "Descended") { %>
+            <option name="nom[type]" value="New">New</option>
+            <option name="nom[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="nom[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="nom[type]" value="Restructure">Restructure</option>
+            <option name="nom[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="nom[type]" value="Auction">Auction (Lelang)</option>
+            <option name="nom[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="nom[type]" value="Booking">Booking (Pencairan Plafond)</option>
+			<option name="nom[type]" value="Descended" selected>Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="nom[type]" value="Refinancing">Refinancing</option>
+            <% } else { %>
+            <option name="nom[type]" value="New">New</option>
+            <option name="nom[type]" value="Prolongation">Prolongation (Perpanjangan)</option>
+            <option name="nom[type]" value="Increment">Increment (Top Up/Penambahan)</option>
+            <option name="nom[type]" value="Restructure">Restructure</option>
+            <option name="nom[type]" value="Settled">Settled (Pelunasan)</option>
+            <option name="nom[type]" value="Auction">Auction (Lelang)</option>
+            <option name="nom[type]" value="Redemption">Redemption (Penebusan)</option>
+            <option name="nom[type]" value="Booking">Booking (Pencairan Plafond)</option>
+            <option name="nom[type]" value="Descended">Descended Quality (Turun Kualitas/di WO)</option>
+            <option name="nom[type]" value="Refinancing" selected>Refinancing</option>
+            <% } %>
+          </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-6">
+          <label>Outstanding (OS Pokok diajukan/Sisa OS Pokok)</label>
+            <div class="input-group">
+              <span class="input-group-addon">Rp.</span>
+              <input class="form-control form-control-md inputNumberDot" type="text" name="nom[outstanding]" data-toggle="tooltip" title="Only input number and put period for decimal. Do not use comma." placeholder="Outstanding" value="<%= nom.outstanding %>" required>
+            </div>
+        </div>
+        <div class="form-group col-6">
+          <label>Exposure (Total OS Pokok)</label>
+            <div class="input-group">
+              <span class="input-group-addon">Rp.</span>
+              <input class="form-control form-control-md inputNumberDot" type="text" name="nom[exposure]" data-toggle="tooltip" title="Only input number and put period for decimal. Do not use comma." placeholder="Exposure" value="<%= nom.exposure %>" required>
+            </div>
+        </div>
+      </div>
+      <div class="form-inline mb-2 mt-2">
+        <label for="nom[level]" class="mr-sm-2 mb-2">Select Committee Level: </label>
+          <select required name="nom[level]" class="custom-select mb-2 mr-sm-5">
+            <% if (nom.level == "C3") { %>
+            <option name="nom[level]" value="C3" selected>C3</option>
+            <option name="nom[level]" value="B1">B1</option>
+            <option name="nom[level]" value="B2">B2</option>
+            <option name="nom[level]" value="A1">A1</option>
+            <option name="nom[level]" value="A2">A2</option>
+            <% } else if (nom.level == "B1") { %>
+            <option name="nom[level]" value="C3">C3</option>
+            <option name="nom[level]" value="B1" selected>B1</option>
+            <option name="nom[level]" value="B2">B2</option>
+            <option name="nom[level]" value="A1">A1</option>
+            <option name="nom[level]" value="A2">A2</option>
+            <% } else if (nom.level == "B2") { %>
+            <option name="nom[level]" value="C3">C3</option>
+            <option name="nom[level]" value="B1">B1</option>
+            <option name="nom[level]" value="B2" selected>B2</option>
+            <option name="nom[level]" value="A1">A1</option>
+            <option name="nom[level]" value="A2">A2</option>
+            <% } else if (nom.level == "A1") { %>
+            <option name="nom[level]" value="C3">C3</option>
+            <option name="nom[level]" value="B1">B1</option>
+            <option name="nom[level]" value="B2">B2</option>
+            <option name="nom[level]" value="A1" selected>A1</option>
+            <option name="nom[level]" value="A2">A2</option>
+            <% } else { %>
+            <option name="nom[level]" value="C3">C3</option>
+            <option name="nom[level]" value="B1">B1</option>
+            <option name="nom[level]" value="B2">B2</option>
+            <option name="nom[level]" value="A1">A1</option>
+            <option name="nom[level]" value="A2" selected>A2</option>
+            <% } %>
+          </select> 
+        <label for="nom[area]" class="mr-sm-2 mb-2">Select Area:  </label>
+          <select required name="nom[area]" id="area" onchange="myFunction(this.value)" class="custom-select mb-2 mr-sm-2">
+            <% if (nom.area == "Bandung Ahmad Yani") { %>
+            <option name="nom[area]" value="Bandung Ahmad Yani" selected>Bandung Ahmad Yani</option>
+            <option name="nom[area]" value="Bandung Dago">Bandung Dago</option>
+            <option name="nom[area]" value="Cirebon">Cirebon</option>
+            <option name="nom[area]" value="Semarang">Semarang</option>
+            <option name="nom[area]" value="Solo">Solo</option>
+            <option name="nom[area]" value="Yogyakarta">Yogyakarta</option>
+            <% } else if (nom.area == "Bandung Dago") { %>
+            <option name="nom[area]" value="Bandung Ahmad Yani">Bandung Ahmad Yani</option>
+            <option name="nom[area]" value="Bandung Dago" selected>Bandung Dago</option>
+            <option name="nom[area]" value="Cirebon">Cirebon</option>
+            <option name="nom[area]" value="Semarang">Semarang</option>
+            <option name="nom[area]" value="Solo">Solo</option>
+            <option name="nom[area]" value="Yogyakarta">Yogyakarta</option>
+            <% } else if (nom.area == "Cirebon") { %>
+            <option name="nom[area]" value="Bandung Ahmad Yani">Bandung Ahmad Yani</option>
+            <option name="nom[area]" value="Bandung Dago">Bandung Dago</option>
+            <option name="nom[area]" value="Cirebon" selected>Cirebon</option>
+            <option name="nom[area]" value="Semarang">Semarang</option>
+            <option name="nom[area]" value="Solo">Solo</option>
+            <option name="nom[area]" value="Yogyakarta">Yogyakarta</option>
+            <% } else if (nom.area == "Semarang") { %>
+            <option name="nom[area]" value="Bandung Ahmad Yani">Bandung Ahmad Yani</option>
+            <option name="nom[area]" value="Bandung Dago">Bandung Dago</option>
+            <option name="nom[area]" value="Cirebon">Cirebon</option>
+            <option name="nom[area]" value="Semarang" selected>Semarang</option>
+            <option name="nom[area]" value="Solo">Solo</option>
+            <option name="nom[area]" value="Yogyakarta">Yogyakarta</option>
+            <% } else if (nom.area == "Solo") { %>
+            <option name="nom[area]" value="Bandung Ahmad Yani">Bandung Ahmad Yani</option>
+            <option name="nom[area]" value="Bandung Dago">Bandung Dago</option>
+            <option name="nom[area]" value="Cirebon">Cirebon</option>
+            <option name="nom[area]" value="Semarang">Semarang</option>
+            <option name="nom[area]" value="Solo" selected>Solo</option>
+            <option name="nom[area]" value="Yogyakarta">Yogyakarta</option>
+            <% } else { %>
+            <option name="nom[area]" value="Bandung Ahmad Yani">Bandung Ahmad Yani</option>
+            <option name="nom[area]" value="Bandung Dago">Bandung Dago</option>
+            <option name="nom[area]" value="Cirebon">Cirebon</option>
+            <option name="nom[area]" value="Semarang">Semarang</option>
+            <option name="nom[area]" value="Solo">Solo</option>
+            <option name="nom[area]" value="Yogyakarta" selected>Yogyakarta</option>
+            <% } %>
+          </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-6">
+          <label>Author 1 (Pemutus 1)</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-users"></i></span>
+              <input class="form-control form-control-md case" type="text" name="nom[author1]" placeholder="Author 1" value="<%= nom.author1 %>" required>
+            </div>
+        </div>
+        <div class="form-group col-6">
+          <label>Author 2 (Pemutus 2)</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-users"></i></span>
+              <input class="form-control form-control-md case" type="text" name="nom[author2]" placeholder="Author 2" value="<%= nom.author2 %>" required>
+            </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-6 form-group">
+          <label>Location (Tempat RKP)</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+            <input class="form-control form-control-md case" type="text" name="nom[place]" placeholder="Location" value="<%= nom.place %>" required>
+          </div>
+        </div>
+        <div class="col-3 form-group">
+          <label>Note Number (Nomor NAP)</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+            <input class="form-control form-control-md upper" type="text" name="nom[noteNmbr]" placeholder="Note Number" value="<%= nom.noteNmbr %>" required>
+          </div>
+        </div>
+        <div class="col-3 form-group">
+          <label>Note Date (Tanggal NAP)</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            <input class="form-control form-control-md date" type="text" name="nom[noteDate]" placeholder="Note Date" value="<%= nom.noteDate %>" required>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" style="margin-right:70%;">
+				<label>Archive Code:</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-archive"></i></span>
+						<input class="form-control form-control-md upper" type="text" name="nom[archive]" data-toggle="tooltip" title="See The Code of Archive on Bindex." value="<%= nom.archive %>">
+					</div>	
+			</div> 
+        <div class="form-group">
+          <label>Remark (Penjelasan)</label>
+          <textarea class="form-control form-control-md case" rows="2" name="nom[remark]"><%= nom.remark %></textarea>
+        </div>  
+        <!-- USER INPUT -->
+        <div>
+         	<input class="form-control form-control-md" type="hidden" name="nom[user]" readonly value="<%= nom.user %>">
+        </div>
+        <div class="form-group">
+          <label>Upload Documents (only upload a maximum of 3 pdf files): </label>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+            <div class="input-group input-file customInputMargin" name="docs">
+              <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-choose" type="button">Choose</button>
+                </span>
+                <input type="text" class="form-control" placeholder='Choose pdf file..' />
+                <span class="input-group-btn">
+                     <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                </span>
+            </div>
+          </div>
+        <div>
+        	<input class="form-control form-control-md" type="hidden" name="nom[editor]" readonly value="<%= currentUser.fullname %>">
+				</div>
+        <input class="container-fluid btn btn-success btn-lg customSubmitMargin" type="submit">
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<% include ../partials/footer %>
+<% include ../functions/editnomfuncs %>
+<% include ../functions/upload %>

@@ -1,0 +1,40 @@
+<script>
+// LOOK FOR SUFFIX THEN MERGE TO NUMBER NOTES OF MEETING
+      function myFunction(x) {
+        let code = {
+                    "Bandung Ahmad Yani": "024",
+                    "Bandung Dago": "019",
+                    "Cirebon": "022",
+                    "Semarang": "020",
+                    "Solo": "021",
+                    "Yogyakarta": "023"
+                    }; 
+      document.getElementById("nmbr").value = '<%= nom.ltrNmbr.slice(0,-3) %>' + code[x];
+      };
+	// TOOLTIP
+      $(document).ready(function(){$('[data-toggle="tooltip"]').tooltip({
+          placement: 'top',
+          trigger: 'hover'
+      });
+    });
+      //DATEPICKER
+      $(document).ready(function(){$('.date').datepicker();
+    });
+	 //DATEPICKER NOW
+      $(document).ready(function(){$('#nowdate').datepicker(
+			"setDate", new Date()
+			);
+    });
+      //TITLE CASE
+      $(function() {
+        $(".case").Setcase({caseValue : 'pascal'});
+      });
+      //UPPER CASE
+      $(function() {
+        $(".upper").Setcase({caseValue : 'upper'});
+      });
+      // AutoNumeric   
+      jQuery(function($) {
+          $('.inputNumberDot').autoNumeric('init');    
+      });
+</script>

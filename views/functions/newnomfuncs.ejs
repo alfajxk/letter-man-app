@@ -1,0 +1,53 @@
+<script>
+// LOOK FOR SUFFIX THEN MERGE TO NUMBER NOTES OF MEETING
+      function myFunction(x) {
+        var code = {
+                    "Bandung Ahmad Yani": "024",
+                    "Bandung Dago": "019",
+                    "Cirebon": "022",
+                    "Semarang": "020",
+                    "Solo": "021",
+                    "Yogyakarta": "023"
+                    }; 
+      document.getElementById("helper").value = code[x];
+      };
+
+      window.onload = setInterval(function(){
+        var newNumber = document.getElementById("helper").value;
+        var freshId = document.getElementById("changeId").value;
+        var preNmbr = {
+                    "1": "000",
+                    "2": "00",
+                    "3": "0",
+                    "4": ""
+                    };
+        document.getElementById("nmbr").value = <%=prefix%> +"/"+preNmbr[freshId.length]+freshId+".NTL/RRG-ROIV-"+newNumber;
+        },100);
+
+	// TOOLTIP
+      $(document).ready(function(){$('[data-toggle="tooltip"]').tooltip({
+          placement: 'top',
+          trigger: 'hover'
+      });
+    });
+      //DATEPICKER
+      $(document).ready(function(){$('.date').datepicker();
+    });
+	 //DATEPICKER NOW
+      $(document).ready(function(){$('#nowdate').datepicker(
+			"setDate", new Date()
+			);
+    });
+      //TITLE CASE
+      $(function() {
+        $(".case").Setcase({caseValue : 'pascal'});
+      });
+      //UPPER CASE
+      $(function() {
+        $(".upper").Setcase({caseValue : 'upper'});
+      });
+      // AutoNumeric   
+      jQuery(function($) {
+          $('.inputNumberDot').autoNumeric('init');    
+      });
+</script>
