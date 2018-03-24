@@ -11,6 +11,10 @@ Mozilla Firefox Version 43.
 
 * to make the user an admin please update from MongoDb Shell the Role field
 
+Before you use an upload facilitiy:
+1. please create "uploads" folder under "public" folder
+2. then create "letters", "memos", "notes", "noms", "inletters", "inmemos", innotes" folders
+
 1St Project
 
 Best Regards
