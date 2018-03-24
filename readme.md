@@ -1,3 +1,5 @@
+letter-man-app version 2.3
+
 Web App using Express.Js to generate sequence number for letters, memos and notes.
 
 Please Install:
